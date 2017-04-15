@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<testcase name="TC_VerifyLogin" class="VerifyLogin" pageClass="Login">
+    <properties>
+        <property name="username" type="java.lang.String" value="charlse"/>
+        <property name="password" type="java.lang.String" value="wc123456#"/>
+        <property name="password" type="java.lang.String" value="wc123456#"/>
+    </properties>
+    <verify>
+        <field name="username" type="single" class="java.lang.String" value="charlse"/>
+        <field name="password" type="single" class="java.lang.String" value="wc123456#"/>
+        <field name="pruductlist" type="datafield" class="test.atf.webtest.datafield.ProductList">
+            <fielditem name="pname" type="single" class="java.lang.String" value="10001"/>
+            <fielditem name="pprice" type="single" class="java.lang.String" value="100"/>
+        </field>
+    </verify>
+</testcase>
