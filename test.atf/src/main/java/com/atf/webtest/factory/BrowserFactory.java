@@ -6,9 +6,9 @@
 package com.atf.webtest.factory;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.browser.chrome.ChromeDriver;
-import org.openqa.selenium.browser.firefox.FirefoxDriver;
-import org.openqa.selenium.browser.ie.InternetExplorerDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.ie.*;
 
 import com.atf.support.config.EnviConfig;
 

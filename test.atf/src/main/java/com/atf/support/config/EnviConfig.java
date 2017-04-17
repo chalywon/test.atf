@@ -5,11 +5,9 @@
  */
 package com.atf.support.config;
 
-import org.openqa.selenium.WebDriver;
 
 import com.atf.hybird.AppDriver;
 import com.atf.hybird.implement.HybirdDriver;
-import com.atf.support.excepiton.EnvironmentException;
 import com.atf.webtest.factory.BrowserFactory;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import org.openqa.selenium.WebDriver;
 
 public class EnviConfig {
 

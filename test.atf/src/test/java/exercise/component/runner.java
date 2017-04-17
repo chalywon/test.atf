@@ -14,11 +14,10 @@ import exercise.component.Testcase;
 import java.util.Iterator;
 
 import com.atf.support.config.EnviConfig;
-import com.atf.webtest.factory.DataProviderFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.browser.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class runner {
