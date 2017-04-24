@@ -1,6 +1,7 @@
 package com.atf.restful;
 
 import org.apache.http.entity.StringEntity;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
@@ -20,4 +21,5 @@ public interface RestfulPostEntity extends RestfulEntity {
 	public RestfulDriver getDriver();
 
 	public void setDriver(RestfulDriver driver);
+
 }

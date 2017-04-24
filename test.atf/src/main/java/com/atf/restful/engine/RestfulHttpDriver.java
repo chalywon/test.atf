@@ -12,9 +12,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.atf.restful.RestfulEntity;
 import com.atf.restful.RestfulPostEntity;
+import com.atf.restful.context.OrientContext;
 import com.atf.restful.RestfulDriver;
 import com.atf.restful.httpclient.HttpClient;
-import com.atf.restful.httpclient.HttpEndpoint;
+import com.atf.restful.httpclient.HttpEndPoint;
+import com.atf.restful.httpclient.HttpMethodType;
 import com.atf.restful.httpclient.HttpRequestParam;
 import com.atf.restful.util.ClassParser;
 import com.atf.support.util.Generics;
@@ -27,15 +29,11 @@ import com.atf.support.util.Generics;
  */
 public class RestfulHttpDriver implements RestfulDriver {
 	private HttpClient httpClient;
+	private HttpEndPoint endpoint;
 
-	public RestfulHttpDriver() {
-
+	public RestfulHttpDriver(String host, int port) {
+		this.endpoint = new HttpEndPoint(host, port);
 	}
-
-	public RestfulHttpDriver(HttpEndpoint endpoint) throws Exception {
-		httpClient = new HttpClient(endpoint);
-	}
-
 
 	public HttpClient getClient() {
 		return httpClient;
@@ -46,19 +44,27 @@ public class RestfulHttpDriver implements RestfulDriver {
 	}
 
 	@Override
-	public RestfulDriver orientService(HttpEndpoint endpoint) throws Exception {
-		httpClient = new HttpClient(endpoint);
+	public RestfulDriver orientService(OrientContext request) throws Exception {
+		this.endpoint.setPath(request.getPath());
+		this.endpoint.setMethodType(request.getType());
+		this.endpoint.setHeaders(Arrays.asList(request.getHeaders()));
 		return this;
 	}
 
 	@Override
 	public String request() throws IOException, Exception {
+		this.httpClient = new HttpClient(this.endpoint);
 		return this.httpClient.invoke();
 	}
 
 	@Override
 	public String request(RestfulEntity entity) throws Exception {
+		this.httpClient = new HttpClient(this.endpoint);
 		return this.httpClient.invoke(entity);
+	}
+
+	public void setHttpEndPoint(HttpEndPoint endpoint) throws Exception {
+		httpClient = new HttpClient(endpoint);
 	}
 
 }

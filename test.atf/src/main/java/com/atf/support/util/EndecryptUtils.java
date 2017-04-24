@@ -1,6 +1,7 @@
 package com.atf.support.util;
 
 import java.security.MessageDigest;
+import java.util.UUID;
 
 /**
 	*@author charlse
@@ -9,6 +10,11 @@ import java.security.MessageDigest;
 	*@desption
 */
 public class EndecryptUtils {
+	
+	public static String getUuid(){
+		UUID uuid = UUID.randomUUID();
+		return uuid.toString();
+	}
 	public static String string2MD5(String inStr){  
         MessageDigest md5 = null;  
         try{  

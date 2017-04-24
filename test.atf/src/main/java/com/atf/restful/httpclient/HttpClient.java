@@ -43,7 +43,7 @@ import com.atf.restful.exception.MethodTypeMatchException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class HttpClient {
-	private HttpEndpoint endpoint;
+	private HttpEndPoint endpoint;
 	private CloseableHttpClient DEFAULT_HTTP_CLIENT = null;
 	private RequestConfig REQUEST_CONFIG = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000)
 			.build();
@@ -52,7 +52,7 @@ public class HttpClient {
 		initHttpClient();
 	}
 
-	public HttpClient(HttpEndpoint endpoint) throws Exception {
+	public HttpClient(HttpEndPoint endpoint) throws Exception {
 		initHttpClient();
 		this.endpoint = endpoint;
 	}
@@ -178,11 +178,11 @@ public class HttpClient {
 		}
 	}
 
-	public HttpEndpoint getEndpoint() {
+	public HttpEndPoint getEndpoint() {
 		return endpoint;
 	}
 
-	public void setEndpoint(HttpEndpoint endpoint) {
+	public void setEndpoint(HttpEndPoint endpoint) {
 		this.endpoint = endpoint;
 	}
 }

@@ -2,7 +2,7 @@ package com.atf.restful;
 
 import java.io.IOException;
 
-import com.atf.restful.httpclient.HttpEndpoint;
+import com.atf.restful.context.OrientContext;
 
 /**
  * @author charlse
@@ -11,7 +11,7 @@ import com.atf.restful.httpclient.HttpEndpoint;
  * @desption
  */
 public interface RestfulDriver {
-	public RestfulDriver orientService(HttpEndpoint endpoint) throws Exception;
+	public RestfulDriver orientService(OrientContext request) throws Exception;
 
 	public String request() throws IOException, Exception;
 

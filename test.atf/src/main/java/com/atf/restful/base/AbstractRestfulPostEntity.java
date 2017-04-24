@@ -1,9 +1,9 @@
 package com.atf.restful.base;
 
-
 import org.apache.http.entity.StringEntity;
 import com.atf.restful.RestfulEntity;
 import com.atf.restful.RestfulPostEntity;
+import com.atf.restful.context.OrientContext;
 import com.atf.restful.RestfulDriver;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,9 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @desption
  */
 public abstract class AbstractRestfulPostEntity extends AbstractRestfulEntity implements RestfulPostEntity {
-
-	@JsonIgnore
-	protected RestfulDriver driver;
 
 	public AbstractRestfulPostEntity() {
 	}

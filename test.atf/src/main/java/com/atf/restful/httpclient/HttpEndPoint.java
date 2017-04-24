@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.apache.http.Header;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.message.BasicHeader;
 
+import com.atf.restful.context.OrientContext;
 import com.google.common.net.HttpHeaders;
 
 /**
@@ -19,22 +21,35 @@ import com.google.common.net.HttpHeaders;
  * @time 2017年3月20日 下午3:55:48
  * @desption
  */
-public class HttpEndpoint {
+public class HttpEndPoint {
 
 	String host;
 	String path;
+	OrientContext orient;
 	List<Header> headers;
 	List<HttpRequestParam> params;
 	int port;
 	HttpMethodType methodType;
 
-	public HttpEndpoint(String host, int port, String path, HttpMethodType methodType) throws URISyntaxException {
+	public HttpEndPoint(String host, int port, String path, HttpMethodType methodType) throws URISyntaxException {
 		this.host = host;
 		this.port = port;
 		this.path = path;
 		this.methodType = methodType;
 		this.headers = new ArrayList<Header>();
 		headers.add(new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json"));
+	}
+	
+	public HttpEndPoint(String host,int port,OrientContext orient){
+		this.host=host;
+		this.port=port;
+		this.path=orient.getPath();
+		this.headers=Arrays.asList(orient.getHeaders());
+	}
+	
+	public HttpEndPoint(String host,int port){
+		this.host=host;
+		this.port=port;
 	}
 
 	public String getHost() {
@@ -123,6 +138,17 @@ public class HttpEndpoint {
 
 	public void setHeaders(List<Header> headers) {
 		this.headers = headers;
+	}
+
+	public OrientContext getOrient() {
+		return orient;
+	}
+
+	public void setOrient(OrientContext orient) {
+		this.orient = orient;
+		this.methodType=orient.getType();
+		this.path=orient.getPath();
+		this.headers=Arrays.asList(orient.getHeaders());
 	}
 
 }

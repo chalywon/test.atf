@@ -1,5 +1,6 @@
 package com.atf.restful;
 
+import com.atf.restful.context.OrientContext;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
@@ -19,4 +20,8 @@ public interface RestfulGetEntity extends RestfulEntity {
 	public RestfulDriver getDriver();
 
 	public void setDriver(RestfulDriver driver);
+	
+	public void setOrient(OrientContext orient);
+	
+	public OrientContext getOrient(OrientContext orient);
 }
