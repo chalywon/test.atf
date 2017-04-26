@@ -20,6 +20,6 @@ public interface RestfulPostEntity extends RestfulEntity {
 
 	public RestfulDriver getDriver();
 
-	public void setDriver(RestfulDriver driver);
+	public void setDriver(RestfulDriver driver) throws Exception;
 
 }

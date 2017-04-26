@@ -40,7 +40,7 @@ public abstract class AbstractRestfulGetEntity extends AbstractRestfulEntity imp
 
 	@JsonIgnore
 	public RestfulEntity get(Class<?> clazz) throws Exception {
-		String json = this.driver.request(this);
+		String json = this.driver.request(this).getBody();
 		ObjectMapper mapper = new ObjectMapper();
 		RestfulEntity entity = (RestfulEntity) mapper.readValue(json, clazz);
 		return entity;
@@ -48,7 +48,7 @@ public abstract class AbstractRestfulGetEntity extends AbstractRestfulEntity imp
 
 	@JsonIgnore
 	public String get() throws Exception {
-		String json = this.driver.request(this);
+		String json = this.driver.request(this).getBody();
 		return json;
 
 	}

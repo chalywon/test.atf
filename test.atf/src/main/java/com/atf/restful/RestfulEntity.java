@@ -1,5 +1,9 @@
 package com.atf.restful;
 
+import java.util.List;
+
+import org.apache.http.Header;
+
 import com.atf.restful.context.OrientContext;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -13,7 +17,11 @@ public interface RestfulEntity {
 
 	public String toJson() throws JsonProcessingException;
 
-	public void setOrient(OrientContext orient);
+	public void setOrientContext(OrientContext orientContext);
 
-	public OrientContext getOrient();
+	public OrientContext getOrientContext();
+	
+	public List<Header> getHeaders();
+	
+	public void setHeaders(List<Header> headers);
 }

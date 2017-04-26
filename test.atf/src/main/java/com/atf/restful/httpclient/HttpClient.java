@@ -13,6 +13,7 @@ import javax.net.ssl.SSLContext;
 import javax.swing.text.html.FormSubmitEvent.MethodType;
 
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.io.IOException;
@@ -94,7 +95,7 @@ public class HttpClient {
 
 	}
 
-	public String invoke() throws Exception, IOException {
+	public HttpResponse invoke() throws Exception, IOException {
 
 		if (this.endpoint.getMethodType() == HttpMethodType.POST || endpoint.getMethodType() == HttpMethodType.PUT)
 			throw new MethodTypeMatchException("POST或者PUT请求没有HttpEntity！");
@@ -122,9 +123,9 @@ public class HttpClient {
 			if (HttpStatus.SC_OK != response.getStatusLine().getStatusCode()) {
 				throw new Exception("HTTP请求失败，HTTP状态码=[" + response.getStatusLine() + "]");
 			}
-
+			List<Header> headers=Arrays.asList(response.getAllHeaders());
 			responseStr = EntityUtils.toString(response.getEntity());
-			return responseStr;
+			return new HttpResponse(headers,responseStr);
 		} finally {
 			if (response != null)
 				closeHttpResponse(response);
@@ -133,7 +134,7 @@ public class HttpClient {
 		}
 	}
 
-	public String invoke(RestfulEntity entity) throws Exception {
+	public HttpResponse invoke(RestfulEntity entity) throws Exception {
 		if (this.endpoint.getMethodType() == HttpMethodType.GET || endpoint.getMethodType() == HttpMethodType.DELETE)
 			throw new MethodTypeMatchException("GET或者DELETE不能带有HttpEntity！");
 
@@ -158,8 +159,9 @@ public class HttpClient {
 			if (HttpStatus.SC_OK != response.getStatusLine().getStatusCode()) {
 				throw new Exception("HTTP请求失败，HTTP状态码=[" + response.getStatusLine() + "]");
 			}
+			List<Header> headers=Arrays.asList(response.getAllHeaders());
 			responseStr = EntityUtils.toString(response.getEntity());
-			return responseStr;
+			return new HttpResponse(headers,responseStr);
 		} finally {
 			if (response != null)
 				closeHttpResponse(response);

@@ -1,4 +1,4 @@
-package com.atf.restful.util;
+package com.atf.support;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

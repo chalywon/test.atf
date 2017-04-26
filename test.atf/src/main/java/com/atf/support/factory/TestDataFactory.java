@@ -9,9 +9,9 @@ import java.util.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.atf.support.XmlUtils;
 import com.atf.support.assembly.compnents.DataFieldGroup;
 import com.atf.support.config.EnviConfig;
-import com.atf.support.util.XmlUtils;
 
 
 /**

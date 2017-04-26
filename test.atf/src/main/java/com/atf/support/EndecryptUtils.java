@@ -1,4 +1,4 @@
-package com.atf.support.util;
+package com.atf.support;
 
 import java.security.MessageDigest;
 import java.util.UUID;

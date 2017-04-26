@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.atf.restful.engine.RestfulHttpDriver;
-import com.atf.support.util.Generics;
+import com.atf.support.Generics;
 
 import java.lang.reflect.Field;
 

@@ -1,5 +1,10 @@
 package com.atf.restful.base;
 
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.http.Header;
+
 import com.atf.restful.RestfulDriver;
 import com.atf.restful.RestfulEntity;
 import com.atf.restful.context.OrientContext;
@@ -15,9 +20,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class AbstractRestfulEntity implements RestfulEntity {
 	@JsonIgnore
-	protected OrientContext orient;
+	protected OrientContext orientContext;
 	@JsonIgnore
 	protected RestfulDriver driver;
+	@JsonIgnore
+	protected List<Header> headers;
 
 	@Override
 	public String toJson() throws JsonProcessingException {
@@ -27,13 +34,33 @@ public class AbstractRestfulEntity implements RestfulEntity {
 	}
 
 	@Override
-	public OrientContext getOrient() {
-		return orient;
+	public OrientContext getOrientContext() {
+		return orientContext;
 	}
 
 	@Override
-	public void setOrient(OrientContext orient) {
-		this.orient = orient;
+	public void setOrientContext(OrientContext orientContext) {
+		this.orientContext = orientContext;
+	}
+
+	@Override
+	public List<Header> getHeaders() {
+		return this.headers;
+	}
+
+	@Override
+	public void setHeaders(List<Header> headers) {
+		this.headers = headers;
+	}
+
+	public Header getHeader(String headerName) {
+		Iterator<Header> it = this.headers.iterator();
+		while (it.hasNext()) {
+			Header header = it.next();
+			if (header.getName().equals(headerName))
+				return header;
+		}
+		return null;
 	}
 
 }

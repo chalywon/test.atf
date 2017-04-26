@@ -3,6 +3,7 @@ package com.atf.restful;
 import java.io.IOException;
 
 import com.atf.restful.context.OrientContext;
+import com.atf.restful.httpclient.HttpResponse;
 
 /**
  * @author charlse
@@ -13,8 +14,8 @@ import com.atf.restful.context.OrientContext;
 public interface RestfulDriver {
 	public RestfulDriver orientService(OrientContext request) throws Exception;
 
-	public String request() throws IOException, Exception;
+	public HttpResponse request() throws IOException, Exception;
 
-	public String request(RestfulEntity entity) throws Exception;
+	public HttpResponse request(RestfulEntity entity) throws Exception;
 
 }

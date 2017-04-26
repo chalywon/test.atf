@@ -21,7 +21,7 @@ public interface RestfulGetEntity extends RestfulEntity {
 
 	public void setDriver(RestfulDriver driver);
 	
-	public void setOrient(OrientContext orient);
+	public void setOrientContext(OrientContext orientContext);
 	
-	public OrientContext getOrient(OrientContext orient);
+	public OrientContext getOrientContext(OrientContext orientContext);
 }

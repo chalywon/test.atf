@@ -16,7 +16,7 @@
 package com.atf.hybird.server.httpsvr;
 
 import com.atf.hybird.server.httpsvr.handler.Handler;
-import com.atf.support.util.XmlUtils;
+import com.atf.support.XmlUtils;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
