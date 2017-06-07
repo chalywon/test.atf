@@ -24,32 +24,18 @@ import com.google.common.net.HttpHeaders;
 public class HttpEndPoint {
 
 	String host;
-	String path;
 	OrientContext orient;
-	List<Header> headers;
 	List<HttpRequestParam> params;
 	int port;
-	HttpMethodType methodType;
 
-	public HttpEndPoint(String host, int port, String path, HttpMethodType methodType) throws URISyntaxException {
+	public HttpEndPoint(String host, int port, OrientContext orient) {
 		this.host = host;
 		this.port = port;
-		this.path = path;
-		this.methodType = methodType;
-		this.headers = new ArrayList<Header>();
-		headers.add(new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json"));
 	}
-	
-	public HttpEndPoint(String host,int port,OrientContext orient){
-		this.host=host;
-		this.port=port;
-		this.path=orient.getPath();
-		this.headers=Arrays.asList(orient.getHeaders());
-	}
-	
-	public HttpEndPoint(String host,int port){
-		this.host=host;
-		this.port=port;
+
+	public HttpEndPoint(String host, int port) {
+		this.host = host;
+		this.port = port;
 	}
 
 	public String getHost() {
@@ -69,15 +55,15 @@ public class HttpEndPoint {
 	}
 
 	public String getPath() {
-		return path;
+		return this.orient.getPath();
 	}
 
 	public void setPath(String resource) {
-		this.path = resource;
+		this.orient.setPath(resource);
 	}
 
 	public List<HttpRequestParam> getParams() {
-		return params;
+		return this.params;
 	}
 
 	public void setParams(List<HttpRequestParam> params) {
@@ -89,11 +75,11 @@ public class HttpEndPoint {
 	}
 
 	public HttpMethodType getMethodType() {
-		return methodType;
+		return this.orient.getType();
 	}
 
 	public void setMethodType(HttpMethodType methodType) {
-		this.methodType = methodType;
+		this.orient.setType(methodType);
 	}
 
 	public void addParam(HttpRequestParam para) {
@@ -103,20 +89,18 @@ public class HttpEndPoint {
 	}
 
 	public void addHeader(String name, String value) {
-		if (this.headers == null)
-			this.headers = new ArrayList<Header>();
-		this.headers.add(new BasicHeader(name, value));
+		this.orient.addHeader(new BasicHeader(name, value));
 	}
 
 	public URI formatURI() throws URISyntaxException {
 		String paramsStr = "";
 		if (this.params != null)
 			paramsStr = "?" + getParamsStr();
-		String url="";
+		String url = "";
 		if (this.port != 80)
-			url = "http://"+this.host + ":" + this.port + "/" + this.path + paramsStr;
+			url = "http://" + this.host + ":" + this.port + "/" + this.orient.getPath() + paramsStr;
 		else
-			url = "http://"+this.host + "/" + this.path + paramsStr;
+			url = "http://" + this.host + "/" + this.orient.getPath() + paramsStr;
 		URIBuilder builder = new URIBuilder(url.trim()).setCharset(Charset.forName("UTF-8"));
 		return builder.build();
 	}
@@ -133,22 +117,19 @@ public class HttpEndPoint {
 	}
 
 	public List<Header> getHeaders() {
-		return headers;
+		return Arrays.asList(this.orient.getHeaders());
 	}
 
 	public void setHeaders(List<Header> headers) {
-		this.headers = headers;
+		this.orient.setHeaders(headers);
 	}
 
 	public OrientContext getOrient() {
-		return orient;
+		return this.orient;
 	}
 
 	public void setOrient(OrientContext orient) {
 		this.orient = orient;
-		this.methodType=orient.getType();
-		this.path=orient.getPath();
-		this.headers=Arrays.asList(orient.getHeaders());
 	}
 
 }

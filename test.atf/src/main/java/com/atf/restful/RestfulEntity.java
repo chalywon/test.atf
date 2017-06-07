@@ -17,9 +17,7 @@ public interface RestfulEntity {
 
 	public String toJson() throws JsonProcessingException;
 
-	public void setOrientContext(OrientContext orientContext);
 
-	public OrientContext getOrientContext();
 	
 	public List<Header> getHeaders();
 	

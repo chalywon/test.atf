@@ -23,7 +23,6 @@ public abstract class AbstractRestfulPostEntity extends AbstractRestfulEntity im
 
 	public AbstractRestfulPostEntity(RestfulDriver driver) throws Exception {
 		this.driver = driver;
-		this.driver.orientService(this.getOrientContext());
 	}
 
 	@JsonIgnore
@@ -56,8 +55,6 @@ public abstract class AbstractRestfulPostEntity extends AbstractRestfulEntity im
 
 	public void setDriver(RestfulDriver driver) throws Exception {
 		this.driver = driver;
-		OrientContext context = this.getOrientContext();
-		this.driver.orientService(context);
 	}
 
 }

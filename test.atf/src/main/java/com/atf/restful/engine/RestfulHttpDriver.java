@@ -46,9 +46,7 @@ public class RestfulHttpDriver implements RestfulDriver {
 
 	@Override
 	public RestfulDriver orientService(OrientContext orientContext) throws Exception {
-		this.endpoint.setPath(orientContext.getPath());
-		this.endpoint.setMethodType(orientContext.getType());
-		this.endpoint.setHeaders(Arrays.asList(orientContext.getHeaders()));
+		this.endpoint.setOrient(orientContext);
 		return this;
 	}
 
@@ -66,6 +64,22 @@ public class RestfulHttpDriver implements RestfulDriver {
 
 	public void setHttpEndPoint(HttpEndPoint endpoint) throws Exception {
 		httpClient = new HttpClient(endpoint);
+	}
+
+	public HttpClient getHttpClient() {
+		return httpClient;
+	}
+
+	public void setHttpClient(HttpClient httpClient) {
+		this.httpClient = httpClient;
+	}
+
+	public HttpEndPoint getEndpoint() {
+		return endpoint;
+	}
+
+	public void setEndpoint(HttpEndPoint endpoint) {
+		this.endpoint = endpoint;
 	}
 
 }

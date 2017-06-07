@@ -84,13 +84,13 @@ public class HttpClient {
 
 	public HttpRequestBase doPut(URI uri, RestfulEntity entity) throws JsonProcessingException {
 		HttpPut put = new HttpPut(uri);
-		put.setEntity(((RestfulPostEntity)entity).getPostEntity());
+		put.setEntity(((RestfulPostEntity) entity).getPostEntity());
 		return put;
 	}
 
 	public HttpRequestBase doPost(URI uri, RestfulEntity entity) throws JsonProcessingException {
 		HttpPost post = new HttpPost(uri);
-		post.setEntity(((RestfulPostEntity)entity).getPostEntity());
+		post.setEntity(((RestfulPostEntity) entity).getPostEntity());
 		return post;
 
 	}
@@ -115,7 +115,7 @@ public class HttpClient {
 			default:
 				break;
 			}
-			if (endpoint.headers != null)
+			if (endpoint.getOrient().getHeaders() != null)
 				request.setHeaders(
 						(Header[]) this.endpoint.getHeaders().toArray(new Header[endpoint.getHeaders().size()]));
 			response = DEFAULT_HTTP_CLIENT.execute(request, SessionContext.currentContext());
@@ -123,9 +123,9 @@ public class HttpClient {
 			if (HttpStatus.SC_OK != response.getStatusLine().getStatusCode()) {
 				throw new Exception("HTTP请求失败，HTTP状态码=[" + response.getStatusLine() + "]");
 			}
-			List<Header> headers=Arrays.asList(response.getAllHeaders());
+			List<Header> headers = Arrays.asList(response.getAllHeaders());
 			responseStr = EntityUtils.toString(response.getEntity());
-			return new HttpResponse(headers,responseStr);
+			return new HttpResponse(headers, responseStr);
 		} finally {
 			if (response != null)
 				closeHttpResponse(response);
@@ -159,9 +159,9 @@ public class HttpClient {
 			if (HttpStatus.SC_OK != response.getStatusLine().getStatusCode()) {
 				throw new Exception("HTTP请求失败，HTTP状态码=[" + response.getStatusLine() + "]");
 			}
-			List<Header> headers=Arrays.asList(response.getAllHeaders());
+			List<Header> headers = Arrays.asList(response.getAllHeaders());
 			responseStr = EntityUtils.toString(response.getEntity());
-			return new HttpResponse(headers,responseStr);
+			return new HttpResponse(headers, responseStr);
 		} finally {
 			if (response != null)
 				closeHttpResponse(response);

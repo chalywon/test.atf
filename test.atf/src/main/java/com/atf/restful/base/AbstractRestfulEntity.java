@@ -20,8 +20,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class AbstractRestfulEntity implements RestfulEntity {
 	@JsonIgnore
-	protected OrientContext orientContext;
-	@JsonIgnore
 	protected RestfulDriver driver;
 	@JsonIgnore
 	protected List<Header> headers;
@@ -33,15 +31,6 @@ public class AbstractRestfulEntity implements RestfulEntity {
 		return json;
 	}
 
-	@Override
-	public OrientContext getOrientContext() {
-		return orientContext;
-	}
-
-	@Override
-	public void setOrientContext(OrientContext orientContext) {
-		this.orientContext = orientContext;
-	}
 
 	@Override
 	public List<Header> getHeaders() {
